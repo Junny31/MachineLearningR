@@ -11,10 +11,11 @@ plot(x = usedcars$mileage, y = usedcars$price,
  #### To examine the relationship between 2 norminal variables, a 2-way cross-tabulation (AKA crosstab or contigency table)
  
  ### To determine if there is a relationship between car model and color in the usedcars.csv data set, we can use the crosstab method.
- ### The Crosstab method is included in the gmodels package (by Grgory Warners)
+ ### The Crosstab method is included in the gmodels package (by Gregory Warners)
  
  install.packages("gmodels")
- library(gmodels) ## loda the gmodels package
+ 
+ library(gmodels) ## load the "gmodels" package
  
  ### There are 9 different colors in the dataset. We are interested in weather or not the car color is conservative
  ### conservative colors (conColor): Black, Gray, Silver and White
