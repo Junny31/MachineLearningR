@@ -26,8 +26,8 @@ plot(x = usedcars$mileage, y = usedcars$price,
  > table(usedcars$conColor)
  
  ### this is give us something like 
- ### FALSE TRUE
- #### 51    99
+ ### FALSE (51) TRUE (99)
+ 
  
  ### Let's determine if the proportion of conservatively colored cars varies by the model using crosstab method
  
