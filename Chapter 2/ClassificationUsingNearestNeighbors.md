@@ -8,12 +8,15 @@
 ### The data include 569 cancer biopsies - each with 32 features: Including patient identification, type of cancer diagnosis (benign or metastatic) and 30 numeric measurements for each biopsy.
 
 breastCancer<-read.csv("wisc_bc_data.csv", stringsAsFactors = FALSE)
+
 head(breastCancer) ### Get a sense of the different viables in the data set
+
 str(breastCancer) ### Understand the structure of the data and types of viables in each feature
 
 ### the first variable is just patient identification number which does not provide any information for our porpuse. Let's exclude this column
 
 breastCancer<-breastCancer[-1]
+
 head(breastCancer) ### check to make sure that the column has been excluded
 
 table(breastCancer$diagnosis) ### Determine how many biopsies are benign and how many are malignant
