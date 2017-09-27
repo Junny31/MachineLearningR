@@ -1,6 +1,6 @@
-# MachineLearningR %% This exercise is based on the elegantly wriiten book: Machine Learning with R second edition by BRETT LANTZ
+# MachineLearningR %% This exercise is based on the book: Machine Learning with R second edition by BRETT LANTZ
 ### To examine bivariate relationship, usually scatter plot is the method of choice
-### For the attached usedcars.csv data, here are the codes to explore the scatterplot relationship between mileage and price of cars in ### the dataset
+### For the attached usedcars.csv data, here are the codes to explore the scatterplot relationship between mileage and price of cars in the dataset
 
 
 plot(x = usedcars$mileage, y = usedcars$price,
