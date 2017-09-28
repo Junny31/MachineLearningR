@@ -47,6 +47,83 @@ breastCancer_norm <- as.data.frame(lapply(breastCancer[2:31], normalize))
 summary(breastCancer_norm) ###All values (min and max values for each feature should be 0 and 1 respectively)
 
 
+### Data preparation: training and test data set
+### Split breastCancer_norm into training and testing datasets
+
+### Out of the 569 cases, we will use 450 for the training dataset and the remaining 119 to test our "model"
+
+
+BreastCancer_train <-BreastCancer_norm[1:450, ]
+
+BreastCancer_test <-BreastCancer_norm[451:569, ]
+
+BreastCancer_train_labels <- BreastCancer[1:450, 1]
+ 
+BreastCancer_test_labels <- BreastCancer[451:569, 1]
+
+###training on the data
+
+install.packages("class")
+
+library(class)
+
+BreastCancer_test_pred <- knn(train = BreastCancer_train, test = BreastCancer_test,
+ cl = BreastCancer_train_labels, k = 21) ### We use k =21, which is ~ the sqrt(450)
+ 
+ 
+ ### Evaluation of our "model" performance
+ 
+ ## We use the CrossTable() function which is part of the gmodels package. We already loaded this package in chapter 1
+ 
+ CrossTable(x = BreastCancer_test_labels, y = BreastCancer_test_pred,
+ prop.chisq=FALSE) ### Specifying chisq=FASLSE, since chi-square values from the output are not informative for our porpuse.
+ 
+ ####Visit my blog ... for data intepretation
+ 
+ 
+ ###There are a few ways to improve the k-nn model performance. (1) Use a different scaling method e.g. Z-scores standardization or (2) try several values for k
+ 
+ ### R has a built function - scale() - which can be use to standardize a vector
+ 
+ BreastCancer_Zscore<- as.data.frame(scale(BreastCancer[-1])) ### Rescale all the numeric features and store the data frame as BreastCancer_Zscore
+ 
+summary(BreastCancer_Zscore) ### To confirm the transformation
+ 
+ 
+ #### The mean is always zero and the range is fairly compact. Values that >3 or <-3 are indicative of extreme values
+ 
+ 
+ ###Just like above, we seperate the data into testing and training datasets
+ 
+
+BreastCancer_train <-BreastCancer_Zscore[1:450, ]
+
+BreastCancer_test <-BreastCancer_Zscore[451:569, ]
+
+BreastCancer_train_labels <- BreastCancer[1:450, 1]
+ 
+BreastCancer_test_labels <- BreastCancer[451:569, 1]
+
+ 
+ 
+ BreastCancer_test_pred <- knn(train = BreastCancer_train, test = BreastCancer_test,
+ cl = BreastCancer_train_labels, k = 21)
+ 
+ CrossTable(x = BreastCancer_test_labels, y = BreastCancer_test_pred,
+ prop.chisq=FALSE) 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+ 
+
+
+
+
 
 
 
