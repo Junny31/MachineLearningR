@@ -87,6 +87,77 @@ sms_spam_corpus_clean <- tm_map(sms_spma_corpus,
   
   as.character(sms_spam_corpus_clean[1:3]) ### After cleaning
   
+  ### Data preparation: splitting text documents into words (AKA tokenization)
+  
+  ### DocumentTermMatrix() function will take a corpus and create a Docmunet Term Matrix where the rows represent SMS messages and the columns are the words in the SMS: This function is present in the tm package that we installed earlier
+  
+  
+  sms_spam_dtm <- DocumentTermMatrix(sms_spam_corpus_clean)
+  
+  
+  ### All the data cleaning and preparation steps can be performed with a single chunck of code
+  
+  
+  
+ sms_spam_dtm2 <- DocumentTermMatrix(sms_corpus, control = list(
+   tolower = TRUE,
+   removeNumbers = TRUE,
+   stopwords = TRUE,
+   removePunctuation = TRUE,
+   stemming = TRUE
+   )
+ )
+ 
+ ### Creating training and test datasets
+ 
+  sms_spam_dtm_train <- sms_spam_dtm[1:4500, ]
+  
+  sms_spam_dtm_test <- sms_spam_dtm[4500:5559, ]
+  
+ ### Labels for the rows in the training and testing datasets.  Labels are not stored in the DTM data frame, so we get them from the original sms.spam data frame
+ 
+ sms_spam_train_labels <- sms_spam[1:4500, ]$type
+ sms_spam_test_labels <- sms_spam[4500:5559, ]$type
+  
+  ###Visualizing text data using word clouds. This can be done using the wordcloud package
+  
+  install.packages("wordcloud")
+  
+  library(wordcloud)
+  
+   wordcloud(sms_spam_corpus_clean, min.freq = 50, random.order = FALSE)
+   
+    spam <- subset(sms_spam, type == "spam")
+    ham <- subset(sms_raw, type == "ham")
+    
+    wordcloud(spam$text, max.words = 40, random.order = FALSE)
+    
+    wordcloud(ham$text, max.words = 40, random.order = FALSE)
+    
+###The last step in the data prep is to transform sparse matrix into a data structure that we can use to train a Naive Bayes classifier
+    
+###Let's eliminate any word that occurs in less than 5 (0.1%) SMS messages. We use the FinFreqTerms() function in the tm package
+
+sms_spam_freq_words <- findFreqTerms(sms_spam_dtm_train, 5) ###The function returns a character vector containing words that appear at least 5 times
+
+sms_spam_req_train <- sms_spam_dtm_train[ , sms_spam_freq_words]
+
+sms_spam_req_test <- sms_spam_dtm_test[ , sms_spam_freq_words]
+ 
+
+
+    
+    
+    
+  
+  
+  
+  
+  
+  
+ 
+ 
+   
   
   
 
