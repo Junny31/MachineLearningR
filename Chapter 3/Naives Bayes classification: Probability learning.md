@@ -6,11 +6,11 @@
 
 ### Get, explore and prepare the data
 
-sms_spam <- read.csv("sms_spam.csv", stringsAsFactors = FALSE)
+ sms_spam <- read.csv("sms_spam.csv", stringsAsFactors = FALSE)
 
-head(sms_spam)
+ head(sms_spam)
 
-str(sms_spam)
+ str(sms_spam)
 
 ###From the out of str(sms_spam) you will see that the "type" element is a character vector. We convert it to a factor
 
