@@ -26,4 +26,39 @@ table(breastCancer$diagnosis) ### Determine how many biopsies are benign and how
 breastCancer$diagnosis<- factor(breastCancer$diagnosis, levels = c("B", "M"),
 labels = c("Benign", "Malignant"))
 
+###Normalization of the numeric data
+### There are two commonly used: min-max normalization and z-score standardization; here, we will use the min-max normalization proceduce
+
+normalize <- function(x) {
+ return ((x - min(x)) / (max(x) - min(x))) ### normalization function
+ }
+ ### Test the normalization function on a vector y
+ y1<-1:10
+ z1<-c(2,10,300,9000,2000)
+ normalize(y1) 
+ normalize(z1) ### observe that all the normalized values fall betwen 0 and 1 irrespective of the original data. 
+ 
+ ###We can now use the normalize() function on the numeric data to cancer data set
+ 
+breastCancer_norm <- as.data.frame(lapply(breastCancer[2:31], normalize))
+
+#### To confirm that the normalization was correcly carried out
+
+summary(breastCancer_norm) ###All values (min and max values for each feature should be 0 and 1 respectively)
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
