@@ -22,6 +22,7 @@ table(mushroom$type) ### Get a sense of the proportion of poisonous mushroom in 
 ###Let's use the 1R classifier to train our data: we are looking for a single predictive feature that can distinguish poisonous from non-poisonous mushroom. 1R classifier can be performed using the OneR() function in the RWeka package.
 
 install.packages('RWeka') ### This package requires Java - make sure Java is install on your machine
+
 library(RWeka)
 
 mushroom_oneR <- OneR(type ~ ., data = mushrooms)
