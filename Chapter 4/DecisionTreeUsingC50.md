@@ -59,6 +59,34 @@ library(C50)
 
 loansDefault_model <- C5.0(loans_train[-17], loans_train$default) ## The 17th column is the default class variable
 
+###Examine the desicion tree stored in loansDefault_model
+
+loansDefault_model
+
+summary(loansDefault_model)
+
+### Evaluating model performance: Apply the model to our test dataset
+
+loan_pred <- predict(loansDefault_model, credit_test)
+
+### The preceding code generates a vector of predicted values which we can compare to the actual values using the CrossTable() function which we install as part of the gmodels package in chaper 2.
+
+CrossTable(loans_test$default, credit_pred,
+prop.chisq = FALSE, prop.c = FALSE, prop.r = FALSE,
+dnn = c('actual default', 'predicted default'))
+
+####Improving C5.0 performance: (1) Boosting - using the trial parameter in C5.0(), we will try the widely used 10 trials
+
+
+loans_boost10 <- C5.0(loans_train[-17], loans_train$default,
+trials = 10)
+
+
+loans_boost10
+
+summary(loans_boost10)
+
+
 
 
 
