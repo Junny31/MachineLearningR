@@ -32,6 +32,20 @@ mushroom_oneR
 summary(mushroom_oneR)
 
 
+###Improving model performance: a more sophisticated rule performer is RIPPER classifier which can be implemented using JRip() function which like OneR(), is part of the RWeka package
+
+mushroom_JRip <- JRip(type ~ ., data = mushrooms)
+
+mushroom_JRip
+
+summary(mushroom_JRip)
+
+
+
+
+
+
+
 
 
 
