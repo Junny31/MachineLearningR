@@ -3,7 +3,7 @@
 
 ### Data containing varieties of mushroom and their associated feature was obtained from  http://archive.ics.uci.edu/ml and included in this chpater mushroom.csv
 
-###Get, explore and prepare data
+### Get, explore and prepare data
 
 mushrooms <- read.csv("mushrooms.csv", stringsAsFactors = TRUE)
 
@@ -13,7 +13,7 @@ str(mushrooms) ### Note that veil_type only has has one level. It codes were pro
 
 mushrooms$veil_type <- NULL ###We eliminate the veil_type feature from our data
 
-table(mushroom$type) ###Get a sense of the proportion of poisonous mushroom in our dataset
+table(mushroom$type) ### Get a sense of the proportion of poisonous mushroom in our dataset
 
 ### In this excericse, we are not trying to train our model to predict the poisoness of some unforeseen mushroom in the future. Our goal is to identify features that can distinguish poisonous mushrooms from their nonpoisonous counterpart. We will use all the muchroom examples to train our model
 
