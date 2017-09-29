@@ -86,6 +86,40 @@ loans_boost10
 
 summary(loans_boost10)
 
+###Test if there is an improvement on the prediction of the test data
+
+loans_boost_pred10 <- predict(loans_boost10, credit_test)
+
+CrossTable(loans_test$default, loans_boost_pred10,
+prop.chisq = FALSE, prop.c = FALSE, prop.r = FALSE,
+dnn = c('actual default', 'predicted default'))
+
+###It is important to avoid mistake that are costlier than other mistakes. C5.0 algorithm allows us to assign a penalty to different types of errors, as a mechanism of discouraging costier mistakes.
+
+matrix_dimensions <- list(c("no", "yes"), c("no", "yes"))
+
+names(matrix_dimensions) <- c("predicted", "actual")
+
+error_cost <- matrix(c(0, 1, 4, 0), nrow = 2,
+dimnames = matrix_dimensions) ### There is no cost assigned when the algorithm classifies a no or yes correctly, but a false negative cost 4 while a false positive cost 1.
+
+
+loans_cost <- C5.0(loans_train[-17], loans_train$default,
+costs = error_cost)
+loans_cost_pred <- predict(loans_cost, loans_test)
+
+CrossTable(loans_test$default, loans_cost_pred,
+prop.chisq = FALSE, prop.c = FALSE, prop.r = FALSE,
+dnn = c('actual default', 'predicted default'))
+
+
+
+
+
+
+
+
+
 
 
 
