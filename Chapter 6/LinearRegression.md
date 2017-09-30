@@ -26,6 +26,29 @@ cor(insurance[c("age", "bmi", "children", "expenses")])
 pairs(insurance[c("age", "bmi", "children", "expenses")])
 
 
+### The pairs.panel() from the psych package produces a more informative plot
+
+install.packages("psych")
+
+library(psych)
+
+insurance_model <- lm(expenses ~ age + children + bmi + sex +
+smoker + region, data = insurance)
+
+summary(insurance_model)
+
+### Improving the performance of our model
+### Its is important to have some basic understanding on how certain independent features in your dataset can affect the dependent variable. For example, it is possible that the relationship between age and expenses might not be a linear function. Medical expenses may become disproportionaly more expensive for oldest population. To increase the effect of age on our model, we might square the age variable.
+
+insurance$age2 <- insurance$age^2 ### We create a new variable "age2" with values that are two fold the age values
+
+### Also, some variable might need to get to a certain threshold for them to have an effect on the dependent variable. BMI for example: BMI =< 30 are considered healthy while BMI > 30 might have an effect on medical expenses
+
+insurance$bmi30 <- ifelse(insurance$bmi >= 30, 1, 0)
+
+###
+
+
 
 
 
