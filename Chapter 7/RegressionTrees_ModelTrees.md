@@ -23,4 +23,4 @@ hist(wines$quality)
 wines_train <- wines[1:3500, ]
 wines_test <- wines[3501:4898, ]
 
-#### REGRESSION TREE MODEL
+# REGRESSION TREE MODEL
