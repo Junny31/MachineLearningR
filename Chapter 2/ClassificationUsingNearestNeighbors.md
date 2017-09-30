@@ -38,7 +38,7 @@ normalize <- function(x) {
  normalize(y1) 
  normalize(z1) ### observe that all the normalized values fall betwen 0 and 1 irrespective of the original data. 
  
- ###We can now use the normalize() function on the numeric data to cancer data set
+ ### We can now use the normalize() function on the numeric data to cancer data set
  
 breastCancer_norm <- as.data.frame(lapply(breastCancer[2:31], normalize))
 
