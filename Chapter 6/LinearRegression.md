@@ -5,11 +5,11 @@
 
 insurance <- read.csv("insurance.csv", stringsAsFactors = TRUE)
 
-head(table)
+head(insurance)
 
 str(insurance)
 
-summary(table)
+summary(insurance)
 
 ### insurance.csv includes 1338 examples of beneficiary enrolled inthe insurance plan. 
 ### The features include "age" of the primary beneficialry, "sex" of the primary benficiary, "BMI" of primary beneficiary, number of children covered in the plan, smoker feature and geograp
@@ -46,7 +46,15 @@ insurance$age2 <- insurance$age^2 ### We create a new variable "age2" with value
 
 insurance$bmi30 <- ifelse(insurance$bmi >= 30, 1, 0)
 
-###
+### Some features might also have a combine impact on the dependent variable. It is possible that BMI and smoking can in combination have an effect on medical expenses. We can use bmi30*smoker to instruct R to model any adding interaction between bmi and smoking status on medical expenses
+
+insurance_model2 <- lm(expenses ~ age + age2 + children + bmi + sex +
+bmi30*smoker + region, data = insurance)
+
+summary(insurance_model2)
+
+
+
 
 
 
