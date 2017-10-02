@@ -34,7 +34,7 @@ plot(x = usedcars$mileage, y = usedcars$price,
  
  CrossTable(x = usedcars$model, y = usedcars$conservative)
  
- ### visit my blog ... to learn how to intepret CrossTable() output
+
  
  
  
