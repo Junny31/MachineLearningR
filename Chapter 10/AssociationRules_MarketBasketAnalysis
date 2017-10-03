@@ -1,0 +1,8 @@
+# Use of market basket analysis to identfy combinations of items that are often purchased together
+
+## Get, explore and prepare data
+
+### The dataset is the Groceries dataset inthe arules R package. This dataset is included in this chapter
+
+
+
