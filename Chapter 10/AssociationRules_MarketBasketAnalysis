@@ -2,7 +2,24 @@
 
 ## Get, explore and prepare data
 
-### The dataset is the Groceries dataset inthe arules R package. This dataset is included in this chapter
+### The dataset is the groceries dataset inthe arules R package. This dataset is included in this chapter
+
+groceries <- read.csv("groceries.csv", stringsAsFactors = TRUE)
+
+head(groceries)
+
+### A sparse matrix structure to handle this kind of data.The read.transaction() in in the arules package generates a matix suitable for transactional data
+
+install.packages("arules")
+
+library(arules) 
+
+groceries <- read.transactions("groceries.csv", sep = ",")
+
+head(groceries)
+
+summary(groceries)
+
 
 
 
