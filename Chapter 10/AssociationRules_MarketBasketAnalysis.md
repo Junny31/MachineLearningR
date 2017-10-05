@@ -51,6 +51,15 @@ summary(groceryrules) ### 150 rules have 2 items, 297 have  items 3, and 16 rule
 
 inspect(groceryrules[1:5])
 
+## Improving the performance of the model
+
+### Depdending on the objectives, the most interesting rules might be the ones with the highest support, confidence or lift
+
+inspect(sort(groceryrules, by = "lift")[1:10]) ### To obtained the top 10 rules sorted by the lift statistic
+
+
+
+
 
 
 
