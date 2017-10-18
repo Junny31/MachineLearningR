@@ -7,7 +7,6 @@ used_cars <- read.csv("usedcars.csv", stringsAsFactors = TRUE)
 head(used_cars)
 summary(used_cars)
 
-# Eamine the relationship between 2 nominal (car model and car color) variables, a 2-way cross-tabulation (crosstab) 
 
 ### There are 9 different colors in the dataset. We are interested in weather or not the car color is conservative
 ### conservative colors (conColor): Black, Gray, Silver and White
