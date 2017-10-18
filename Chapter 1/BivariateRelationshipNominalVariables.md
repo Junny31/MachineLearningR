@@ -1,15 +1,11 @@
+# Determine the relationship between 2 Nominal variables
+
+## Get Data
 
 setwd("C:/Users/Owner/Desktop/MachineLearningR_sampleData")
 used_cars <- read.csv("usedcars.csv", stringsAsFactors = TRUE)
 head(used_cars)
 summary(used_cars)
-
-# Examination of bivariate relationship
-
-library(ggplot2)
-ggplot(used_cars, aes(x=mileage, y=price)) + geom_point()
-  geom_point(size=2, shape=23) 
-
 
 # Eamine the relationship between 2 nominal (car model and car color) variables, a 2-way cross-tabulation (crosstab) 
 
