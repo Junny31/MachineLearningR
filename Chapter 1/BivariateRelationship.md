@@ -1,43 +1,44 @@
-# MachineLearningR %% This exercise is based on the book: Machine Learning with R second edition by BRETT LANTZ
-### To examine bivariate relationship, usually scatter plot is the method of choice
-### For the attached usedcars.csv data, here are the codes to explore the scatterplot relationship between mileage and price of cars in the dataset
+
+setwd("C:/Users/Owner/Desktop/MachineLearningR_sampleData")
+used_cars <- read.csv("usedcars.csv", stringsAsFactors = TRUE)
+head(used_cars)
+summary(used_cars)
+
+# Examination of bivariate relationship
+
+library(ggplot2)
+ggplot(used_cars, aes(x=mileage, y=price)) + geom_point()
+  geom_point(size=2, shape=23) 
 
 
-plot(x = usedcars$mileage, y = usedcars$price,
- main = "Scatterplot of Price vs. Mileage",
- xlab = "Used Car Odometer (mi.)",
- ylab = "Used Car Price ($)")
+# Eamine the relationship between 2 nominal (car model and car color) variables, a 2-way cross-tabulation (crosstab) 
+
+### There are 9 different colors in the dataset. We are interested in weather or not the car color is conservative
+### conservative colors (conColor): Black, Gray, Silver and White
+### not conservative colors (notConColor): Blue, Gold, Green, Red, and Yellow
+
+
+used_cars$conColor <-  used_cars$color %in% c("Black", "Gray", "Silver", "White")
+
+table(used_cars$conColor)
+
+## Determine whether or not used car color is in the set of Black, Gray, Silver, and White
+
  
- #### To examine the relationship between 2 norminal variables, a 2-way cross-tabulation (AKA crosstab or contigency table)
+### this is give us
+
+### FALSE (51) TRUE (99)
  
- ### To determine if there is a relationship between car model and color in the usedcars.csv data set, we can use the crosstab method.
- ### The Crosstab method is included in the gmodels package (by Gregory Warners)
  
- install.packages("gmodels")
+## Proportion of conservatively colored cars varies by the model using crosstab method
  
- library(gmodels) ## load the "gmodels" package
- 
- ### There are 9 different colors in the dataset. We are interested in weather or not the car color is conservative
- ### conservative colors (conColor): Black, Gray, Silver and White
- ### not conservative colors (notConColor): Blue, Gold, Green, Red, and Yellow
+library(gmodels)
+CrossTable(x = used_cars$model, y = used_cars$conColor)
+
+
+### - 65% of the SE cars are coloerd conservatively
+### - 70% of the SEL cars are colored conservatively
+### - 65% of the SES cars are colored conservatively
+
+### There is no difference in the types of colors chosen by the model of the car. 
   
- usedcars$conColor <-  usedcars$color %in% c("Black", "Gray", "Silver", "White") 
- ### A true or false statement, weather or not used car color is in the set of Black, Gray, Silver, and White
- 
- > table(usedcars$conColor)
- 
- ### this is give us something like 
- ### FALSE (51) TRUE (99)
- 
- 
- ### Let's determine if the proportion of conservatively colored cars varies by the model using crosstab method
- 
- CrossTable(x = usedcars$model, y = usedcars$conservative)
- 
-
- 
- 
- 
- 
- 
-
